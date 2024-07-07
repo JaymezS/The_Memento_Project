@@ -1,11 +1,12 @@
-import Message from './Message'
 import { Driver } from './scripts/index.ts'
-import './App.css'
+import Navbar from './components/Navbar.tsx'
 
 function App() {
   Driver.instance
   console.log(Driver.instance)
-  return <div><Message /></div>
+  return <div>
+    <Navbar></Navbar>
+  </div>
 }
 
 export default App
