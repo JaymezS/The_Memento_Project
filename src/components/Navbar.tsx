@@ -1,15 +1,16 @@
 import { Fragment, useState } from "react";
 
 interface NavbarProperties {
+  initialPage: number,
   navbarItems: string[], 
   navbarTitle: string, 
-  onSelectMenu: (menu: string) => void
+  modifyAppOnMenuSelection: (pageNumber: number) => void
 }
 
 
-function Navbar({navbarItems, navbarTitle, onSelectMenu}: NavbarProperties) {
+function Navbar({initialPage, navbarItems, navbarTitle, modifyAppOnMenuSelection}: NavbarProperties) {
 
-  const [selectedMenuIndex, setSelectedMenuIndex] = useState(-1)
+  const [selectedMenuIndex, setSelectedMenuIndex] = useState(initialPage)
   return (
     <Fragment>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,7 +26,10 @@ function Navbar({navbarItems, navbarTitle, onSelectMenu}: NavbarProperties) {
                   >
                     <a
                       className={selectedMenuIndex === index ? "nav-link active" : "nav-link"}
-                      onClick={() => {setSelectedMenuIndex(index) }}
+                      onClick={() => {
+                        setSelectedMenuIndex(index)
+                        modifyAppOnMenuSelection(index)
+                      }}
                     >
                       <span className="sr-only">
                         {category}
