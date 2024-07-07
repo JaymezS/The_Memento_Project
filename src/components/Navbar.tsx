@@ -1,32 +1,40 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+
+interface NavbarProperties {
+  navbarItems: string[], 
+  navbarTitle: string, 
+  onSelectMenu: (menu: string) => void
+}
 
 
-function Navbar() {
-  const CATEGORIES: string[] = ["Home", "Add a New Entry", "Explore"];
+function Navbar({navbarItems, navbarTitle, onSelectMenu}: NavbarProperties) {
+
+  const [selectedMenuIndex, setSelectedMenuIndex] = useState(-1)
   return (
     <Fragment>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">Navbar</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            {CATEGORIES.map((category: string) => (
-              <li
-                className="nav-item"
-                key={category}
-              >
-                <a className="nav-link" href={category}>
-                  <span className="sr-only">
-                    {category}
-                  </span>
-                </a>
-              </li>
-            ))}
-            <li className="nav-item">
-              <a className="nav-link disabled" href="#">Disabled</a>
-            </li>
+        <h1 className="navbar-brand">{navbarTitle}</h1>
+        <div className="" id="navbarNav">
+          <ul className="navbar-nav nav-tabs">
+            {navbarItems.map(
+                (category: string, index: number) => (
+
+                  <li
+                    className="nav-item"
+                    key={category}
+                  >
+                    <a
+                      className={selectedMenuIndex === index ? "nav-link active" : "nav-link"}
+                      onClick={() => {setSelectedMenuIndex(index) }}
+                    >
+                      <span className="sr-only">
+                        {category}
+                      </span>
+                    </a>
+                  </li>
+                )
+              )
+            }
           </ul>
         </div>
       </nav>
