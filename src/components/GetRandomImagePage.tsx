@@ -14,6 +14,7 @@ function GetRandomImagePage() {
     const INPUT_MESSAGE: string = getInputValue("entry-message")
     return INPUT_MESSAGE
   }
+  getUserMessageInput()
 
 
   async function getRandomImage() {
