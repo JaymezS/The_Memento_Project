@@ -5,17 +5,15 @@ import { CuriosityRoverImageAPIManager } from "../scripts/APIManagers"
 
 function GetRandomImagePage() {
 
-  const getInputValue = (elementId: string): string => {
-    const INPUT_ELEMENT: HTMLInputElement = document.getElementById(elementId) as HTMLInputElement
-    return INPUT_ELEMENT.value
-  }
+  // const getInputValue = (elementId: string): string => {
+  //   const INPUT_ELEMENT: HTMLInputElement = document.getElementById(elementId) as HTMLInputElement
+  //   return INPUT_ELEMENT.value
+  // }
 
-  const getUserMessageInput = (): string => {
-    const INPUT_MESSAGE: string = getInputValue("entry-message")
-    return INPUT_MESSAGE
-  }
-  getUserMessageInput()
-
+  // const getUserMessageInput = (): string => {
+  //   const INPUT_MESSAGE: string = getInputValue("entry-message")
+  //   return INPUT_MESSAGE
+  // }
 
   async function getRandomImage() {
     const imageSource: string = await CuriosityRoverImageAPIManager.instance.getRandomImageSource()
