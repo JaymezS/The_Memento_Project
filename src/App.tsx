@@ -1,7 +1,6 @@
 import { Client } from './scripts/Client.ts'
 import { useState } from 'react'
 import Navbar from './components/Navbar.tsx'
-import Alert from './components/Alert.tsx'
 import Homepage from './components/Homepage.tsx'
 import AddEntryPage from './components/AddEntryPage.tsx'
 import BrowseEntryPage from './components/BrowseEntryPage.tsx'

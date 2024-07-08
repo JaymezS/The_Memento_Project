@@ -1,5 +1,4 @@
 import { Fragment } from "react/jsx-runtime"
-import { Client } from "../scripts/Client.ts"
 
 
 function AddEntryPage() {
