@@ -1,7 +1,7 @@
 import { Fragment } from "react/jsx-runtime"
 
 
-function AddEntryPage() {
+function InteractiveMap() {
 
   const getInputValue = (elementId: string): string => {
     const INPUT_ELEMENT: HTMLInputElement = document.getElementById(elementId) as HTMLInputElement
@@ -17,7 +17,7 @@ function AddEntryPage() {
   return (
     <Fragment>
       <h1>
-        Add Entry Page Title
+        Interactive Map Title
       </h1>
       
       <label htmlFor="entry-message">Leave a Message: </label>
@@ -29,4 +29,4 @@ function AddEntryPage() {
 }
 
 
-export default AddEntryPage
+export default InteractiveMap

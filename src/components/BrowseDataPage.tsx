@@ -1,6 +1,6 @@
 import { Fragment } from "react/jsx-runtime";
 
-function BrowseEntryPage() {
+function BrowseDataPage() {
   return (
     <Fragment>
       <h1>
@@ -11,4 +11,4 @@ function BrowseEntryPage() {
 }
 
 
-export default BrowseEntryPage
+export default BrowseDataPage

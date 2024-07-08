@@ -2,8 +2,9 @@ import { Client } from './scripts/Client.ts'
 import { useState } from 'react'
 import Navbar from './components/Navbar.tsx'
 import Homepage from './components/Homepage.tsx'
-import AddEntryPage from './components/AddEntryPage.tsx'
-import BrowseEntryPage from './components/BrowseEntryPage.tsx'
+import InteractiveMap from './components/InteractiveMap.tsx'
+import BrowseDataPage from './components/BrowseDataPage.tsx'
+import GetRandomImagePage from './components/GetRandomImagePage.tsx'
 
 
 function App() {
@@ -16,15 +17,15 @@ function App() {
   }
 
 
-  const NAV_CATEGORIES: string[] = ["Home", "Add a New Entry", "Explore"];
-  const PAGES: any[] = [<Homepage></Homepage>, <AddEntryPage></AddEntryPage>, <BrowseEntryPage></BrowseEntryPage>]
+  const NAV_CATEGORIES: string[] = ["Home", "Interactive Map", "Get A Random Image", "Browse Raw Data"];
+  const PAGES: any[] = [<Homepage></Homepage>, <InteractiveMap></InteractiveMap>, <GetRandomImagePage></GetRandomImagePage>, <BrowseDataPage></BrowseDataPage>]
 
   return (
     <div>
       <Navbar
         initialPage={INITIAL_PAGE}
         navbarItems={NAV_CATEGORIES}
-        navbarTitle='The Memento Project'
+        navbarTitle='Trackerllite'
         modifyAppOnMenuSelection={updatePageCallback}
       >
       </Navbar>
