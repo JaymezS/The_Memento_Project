@@ -1,4 +1,4 @@
-import { Driver } from './scripts/index.ts'
+import { Client } from './scripts/Client.ts'
 import { useState } from 'react'
 import Navbar from './components/Navbar.tsx'
 import Alert from './components/Alert.tsx'
@@ -8,7 +8,7 @@ import BrowseEntryPage from './components/BrowseEntryPage.tsx'
 
 
 function App() {
-  Driver.instance
+  Client.instance
 
   const INITIAL_PAGE: number = 0
   const [currentPageIndex, setCurrentPageIndex] = useState(INITIAL_PAGE)

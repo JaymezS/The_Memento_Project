@@ -20,6 +20,7 @@ class IPManager {
   public static get instance(): IPManager {
     if (IPManager._instance === undefined) {
       IPManager._instance = new IPManager()
+      console.log("instantiated IPManager")
     }
     return IPManager._instance
   }

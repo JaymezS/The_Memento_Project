@@ -10,6 +10,7 @@ class Client {
   public static get instance(): Client {
     if (Client._instance === undefined) {
       Client._instance = new Client()
+      console.log("instantiated Client")
     }
     return Client._instance
   }
