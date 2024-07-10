@@ -1,5 +1,5 @@
 import { Fragment } from "react/jsx-runtime"
-import { CuriosityRoverImageAPIManager } from "../scripts/APIManagers"
+import { RoverImageAPIManager } from "../scripts/APIManagers"
 
 
 
@@ -16,7 +16,7 @@ function GetRandomImagePage() {
   // }
 
   async function getRandomImage() {
-    const imageSource: string = await CuriosityRoverImageAPIManager.instance.getRandomImageSource()
+    const imageSource: string = await RoverImageAPIManager.instance.getRandomImageSource()
     
     const ELEMENT: HTMLImageElement = document.getElementById("random-image-display") as HTMLImageElement
     ELEMENT.src = imageSource
@@ -28,10 +28,6 @@ function GetRandomImagePage() {
       <h1>
         Get an Image
       </h1>
-      
-      <label htmlFor="entry-message">Query: </label>
-      <input id="entry-message" type="text" />
-
       <button onClick={getRandomImage}><span className="sr-only">Get An Image</span></button>
       <img id="random-image-display" src="" alt="no images" />
     </Fragment>

@@ -2,9 +2,9 @@ import { Client } from './scripts/Client.ts'
 import { useState } from 'react'
 import Navbar from './components/Navbar.tsx'
 import Homepage from './components/Homepage.tsx'
-import InteractiveMap from './components/InteractiveMap.tsx'
 import BrowseDataPage from './components/BrowseDataPage.tsx'
 import GetRandomImagePage from './components/GetRandomImagePage.tsx'
+import RequestImagePage from './components/RequestImagePage.tsx'
 
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
   }
 
 
-  const NAV_CATEGORIES: string[] = ["Home", "Interactive Map", "Get A Random Image", "Browse Raw Data"];
-  const PAGES: any[] = [<Homepage></Homepage>, <InteractiveMap></InteractiveMap>, <GetRandomImagePage></GetRandomImagePage>, <BrowseDataPage></BrowseDataPage>]
+  const NAV_CATEGORIES: string[] = ["Home", "Search Images", "Get A Random Image", "Browse Raw Data"];
+  const PAGES: any[] = [<Homepage></Homepage>, <RequestImagePage></RequestImagePage>, <GetRandomImagePage></GetRandomImagePage>, <BrowseDataPage></BrowseDataPage>]
 
   return (
     <div>

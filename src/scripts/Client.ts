@@ -1,10 +1,12 @@
-import { CuriosityRoverImageAPIManager } from "./APIManagers.js"
-import { IPManager } from "./IPManager.js"
+import { RoverImageAPIManager } from "./APIManagers"
+import { IPManager } from "./IPManager"
+import { RoverImageManager } from "./RoverImageManager"
 
 class Client {
   private static _instance: Client | undefined
   readonly IP_MANAGER: IPManager = IPManager.instance
-  readonly CURIOSITY_IMAGE_API_MANAGER: CuriosityRoverImageAPIManager = CuriosityRoverImageAPIManager.instance
+  readonly CURIOSITY_IMAGE_API_MANAGER: RoverImageAPIManager = RoverImageAPIManager.instance
+  readonly ROVER_IMAGE_MANAGER: RoverImageManager = RoverImageManager.instance
 
   private constructor() {
     
