@@ -1,4 +1,4 @@
-import { randInt } from "./Utilities";
+
 
 const NASAAPIKEY: string = "DfbzQQejUNU2HLqZT6KNf6xYaqJp1Y5litQdp6Pk"
 const API_KEYS: string[] = [
@@ -64,8 +64,8 @@ class RoverImageAPIManager extends RestAPIManager {
   public async getImageJsonResponse(rover: string, sol: number = 1, camera: string = "all", page: number = 1): Promise<any> {
     await new Promise(
       (resolve, reject) => {
-        console.log("fetched from: " + this.APIBase + `rovers/${rover}/photos?sol=${sol}&camera=${camera}&page=${page}`)
-        fetch(this.APIBase + `rovers/${rover}/photos?sol=${sol}&camera=${camera}&page=${page}`)
+        console.log("fetched from: " + this.APIBase + `rovers/${rover}/photos?sol=${sol}&cameras=${camera}&page=${page}`)
+        fetch(this.APIBase + `rovers/${rover}/photos?sol=${sol}&cameras=${camera}&page=${page}`)
           .then((RawData) => { return RawData.json() })
           .then((jsonData) => { this._response = jsonData })
           .then(() => { resolve("resolved") })

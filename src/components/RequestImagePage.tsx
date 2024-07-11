@@ -1,19 +1,43 @@
 import { Fragment } from "react/jsx-runtime"
 import DropdownSelect from "./DropdownSelect.tsx"
 import { RoverImageManager } from "../scripts/RoverImageManager.ts"
-import { useState } from "react"
-import { RoverImageAPIManager } from "../scripts/APIManagers.ts"
+import { useEffect, useState } from "react"
 
 
 function RequestImagePage() {
+  // Initializing didMount as false
+  const [didMount, setDidMount] = useState(false)
+
+  // Setting didMount to true upon mounting
+  useEffect(() => { setDidMount(true) }, [])
+
+
   const availableRovers: string[] = ["curiosity", "perseverance"]
 
   const [selectedRover, setSelectedRover] = useState(availableRovers[0])
+  const [selectedSol, setSelectedSol] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
   const [nextPageAvailable, setNextPageAvailable] = useState(false)
   const [previousPageAvailable, setPreviousPageAvailable] = useState(false)
   const [displayedImages, setDisplayedImages] = useState<any[]>([])
 
+  useEffect(() => {
+    updateDisplayBasedOnSelectedRover()
+  }, [selectedRover])
 
+
+
+
+  useEffect(() => {
+    if (didMount) {
+      displayAllImagesAndUpdate();
+    }
+  }, [currentPage])
+
+
+  const updateDisplayBasedOnSelectedRover = (): void => {
+    return
+  }
 
   const roverSelectCallback = (value: string): void => {
     setSelectedRover(value)
@@ -27,17 +51,21 @@ function RequestImagePage() {
 
   const getUserSolInput = (): number => {
     const INPUT_MESSAGE: string = getInputValue("sol-count-input")
+    setSelectedSol(Number(INPUT_MESSAGE))
     return Number(INPUT_MESSAGE)
   }
 
   const getUserCamInput = (): string => {
     const INPUT_MESSAGE: string = getInputValue("camera-input")
+    if (INPUT_MESSAGE === "") {
+      return "all"
+    }
     return INPUT_MESSAGE
   }
 
   async function displayAllImagesAndUpdate() {
     const IMAGE_RESULTS: any[] | null = (await RoverImageManager.instance.getAllImageOnPage(
-      selectedRover, getUserSolInput(), getUserCamInput(), 1
+      selectedRover, selectedSol, getUserCamInput(), currentPage
     ))
     if (IMAGE_RESULTS != null) {
       const PREVIOUS_PAGE_AVAILABLE = IMAGE_RESULTS[IMAGE_RESULTS.length - 2]
@@ -51,7 +79,6 @@ function RequestImagePage() {
       setNextPageAvailable(false)
       setPreviousPageAvailable(false)
     }
-    console.log(await RoverImageAPIManager.instance.getManifestFor("perseverance"))
   }
 
   return (
@@ -74,6 +101,7 @@ function RequestImagePage() {
         type="number"
         placeholder={`page number`}
         min={0}
+        onChange={getUserSolInput}
       />
 
 
@@ -91,6 +119,25 @@ function RequestImagePage() {
             return <img key={obj.id} src={obj.img_src} alt="image not available" width="100px" height="100px" />
           } )
         }
+      </div>
+
+      <div>
+        <button
+          className="btn btn-primary"
+          id="prev-page"
+          onClick={() => { setCurrentPage(currentPage - 1) }}
+          disabled={previousPageAvailable === false ? true: false}
+        >
+          Previous Page
+        </button>
+        <button
+          className="btn btn-primary"
+          id="next-page"
+          onClick={() => { setCurrentPage(currentPage + 1) }}
+          disabled={nextPageAvailable === false ? true: false}
+        >
+          Next Page
+        </button>
       </div>
     </Fragment>
   )
