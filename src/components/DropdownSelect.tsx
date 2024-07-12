@@ -12,25 +12,30 @@ function DropdownSelect({dropdownTitle, selectOptionList, selectValueList, callb
 
   return (
     <Fragment>
-      <label htmlFor={dropdownTitle}>{dropdownTitle}</label>
-      <select
-        className="form-select form-select-sm"
-        id={dropdownTitle}
-        onChange={() => {
-          const THIS: HTMLSelectElement = document.getElementById(dropdownTitle) as HTMLSelectElement
-          callbackOnSelect(THIS.value)
-        }}
-      >
-        {selectOptionList.map((option, index) => {
-          return <option
-            className={index === 1 ? "selected" : ""}
-            value={selectValueList[index]}
-            key={selectValueList[index]}
+      <div className="row col-3 align-items-center">
+        <label htmlFor={dropdownTitle} className="col-6 text-end">{dropdownTitle}</label>
+        <div className="col-6">
+          <select
+            className="custom-select form-control input-lg"
+            id={dropdownTitle}
+            onChange={() => {
+              const THIS: HTMLSelectElement = document.getElementById(dropdownTitle) as HTMLSelectElement
+              console.log("called back with " + THIS.value)
+              callbackOnSelect(THIS.value)
+            }}
           >
-            {option}
-          </option>
-        })}
-      </select>
+            {selectOptionList.map((option, index) => {
+              return <option
+                className={index === 1 ? "selected" : ""}
+                value={selectValueList[index]}
+                key={selectValueList[index]}
+              >
+                {option}
+              </option>
+            })}
+          </select>
+        </div>
+      </div>
     </Fragment>
   )
 }

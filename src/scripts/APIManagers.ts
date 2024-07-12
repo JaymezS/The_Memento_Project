@@ -61,11 +61,18 @@ class RoverImageAPIManager extends RestAPIManager {
     ) 
   }
 
-  public async getImageJsonResponse(rover: string, sol: number = 1, camera: string = "all", page: number = 1): Promise<any> {
+  public async getImageJsonResponse(rover: string, sol: number = 1, camera: string | undefined = undefined, page: number = 1): Promise<any> {
     await new Promise(
       (resolve, reject) => {
-        console.log("fetched from: " + this.APIBase + `rovers/${rover}/photos?sol=${sol}&cameras=${camera}&page=${page}`)
-        fetch(this.APIBase + `rovers/${rover}/photos?sol=${sol}&cameras=${camera}&page=${page}`)
+        let msg: string = ""
+        msg += this.APIBase + `rovers/${rover}/photos?sol=${sol}`
+        if (camera != undefined) {
+          msg += `&camera=${camera}`
+        }
+        msg += `&page=${page}`
+        
+        console.log("fetched from: " + msg)
+        fetch(msg)
           .then((RawData) => { return RawData.json() })
           .then((jsonData) => { this._response = jsonData })
           .then(() => { resolve("resolved") })

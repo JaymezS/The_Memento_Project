@@ -16,7 +16,7 @@ class RoverImageManager {
   }
 
   
-  public async getAllImages(rover: string, sol: number = 1, camera: string = "all"): Promise<any[][]> {
+  public async getAllImages(rover: string, sol: number = 1, camera: string | undefined = undefined): Promise<any[][]> {
     let res: any[][] = [];
     let currentPage: number = 1
     let response = (await RoverImageAPIManager.instance.getImageJsonResponse(rover, sol, camera, currentPage)).photos
@@ -31,7 +31,7 @@ class RoverImageManager {
   }
 
 
-  public async getAllImageOnPage(rover: string, sol: number = 1, camera: string = "all", page: number = 1) {
+  public async getAllImageOnPage(rover: string, sol: number = 1, camera: string | undefined = undefined, page: number = 1) {
     let res: any[] = [];
     let response = (await RoverImageAPIManager.instance.getImageJsonResponse(rover, sol, camera, page)).photos
     if (response.length > 0) {
@@ -55,6 +55,25 @@ class RoverImageManager {
     } else {
       return null
     }
+  }
+
+
+  public async getCamerasAvailableForRover(rover: string, sol: number): Promise<string[] | null> {
+    const PhotosArrayBySol: {sol: number, cameras: string[]}[] = (await RoverImageAPIManager.instance.getManifestFor(rover)).photos
+    let l: number = 0
+    let r: number = PhotosArrayBySol.length - 1
+    let mid: number = 0
+    while (l <= r) {
+      mid = Math.floor((l + r) / 2)
+      if (PhotosArrayBySol[mid].sol === sol) {
+        return PhotosArrayBySol[mid].cameras
+      } else if (PhotosArrayBySol[mid].sol < sol) {
+        l = mid + 1
+      } else {
+        r = mid - 1
+      }
+    }
+    return null
   }
 }
 
