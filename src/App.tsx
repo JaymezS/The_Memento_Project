@@ -17,8 +17,8 @@ function App() {
   }
 
 
-  const NAV_CATEGORIES: string[] = ["Home", "Search Images", "Get A Random Image", "Browse Raw Data"];
-  const PAGES: any[] = [<Homepage></Homepage>, <RequestImagePage></RequestImagePage>, <GetRandomImagePage></GetRandomImagePage>, <BrowseDataPage></BrowseDataPage>]
+  const NAV_CATEGORIES: string[] = ["Home", "MarsCam", "Browse Raw Data"];
+  const PAGES: any[] = [<Homepage></Homepage>, <RequestImagePage></RequestImagePage>, <BrowseDataPage></BrowseDataPage>]
 
   return (
     <div>
